@@ -1,0 +1,39 @@
+name: GitHub Readme Stats
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # Atualiza sozinho a cada 12 horas
+  workflow_dispatch: 
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar Stats Card
+        uses: rickstaa/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: "username=${{ github.repository_owner }}&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"
+          path: profile/stats.svg
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Gerar Top Languages Card
+        uses: rickstaa/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: "username=${{ github.repository_owner }}&layout=compact&langs_count=7&theme=tokyonight&hide_border=true"
+          path: profile/top-langs.svg
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Salvar imagens no repositório
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add profile/stats.svg profile/top-langs.svg
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: atualiza estatísticas do perfil" && git push)
