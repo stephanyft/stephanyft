@@ -2,8 +2,8 @@ name: GitHub Readme Stats
 
 on:
   schedule:
-    - cron: "0 */12 * * *" # Atualiza sozinho a cada 12 horas
-  workflow_dispatch: 
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Gerar Stats Card
-        uses: rickstaa/github-readme-stats-action@v1
+        uses: rickstaa/github-readme-stats-action@main
         with:
           card: stats
           options: "username=${{ github.repository_owner }}&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"
@@ -24,7 +24,7 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Gerar Top Languages Card
-        uses: rickstaa/github-readme-stats-action@v1
+        uses: rickstaa/github-readme-stats-action@main
         with:
           card: top-langs
           options: "username=${{ github.repository_owner }}&layout=compact&langs_count=7&theme=tokyonight&hide_border=true"
