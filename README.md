@@ -10,7 +10,7 @@
 
 <br/>
 
-<a href="https://www.linkedin.com/in/stephany-f-torres" target="_blank">
+<a href="https://www.linkedin.com/in/stephanyft" target="_blank">
   <img src="https://img.shields.io/badge/LinkedIn-8A2BE2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
 <a href="mailto:stephanyfernandes662@gmail.com">
